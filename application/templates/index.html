@@ -1,0 +1,203 @@
+<head>
+	{% include 'index_header.html' %}
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper white-text" style="background-color: black">
+				<a class="white-text" style="margin-left: 25px;">Image To Audio Converter</a>
+				<a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i
+						class="material-icons">menu</i></a>
+				<!-- Navbar menu -->
+				<ul class="right hide-on-med-and-down">
+					<li class="link"><a href="#about" class="white-text">About</a></li>
+					<li class="link"><a href="#convert" class="white-text">Convert</a></li>
+					<li class="link"><a href="#features" class="white-text">Features</a></li>
+					<li class="link"><a href="#contact" class="white-text">Contact Us</a></li>
+				</ul>
+
+				<!-- Navbar menu mobile -->
+				<ul class="side-nav black" id="mobile-demo">
+					<li class="link"><a href="#about" class="white-text">About</a></li>
+					<li class="link"><a href="#features" class="white-text">Features</a></li>
+					<li class="link"><a href="#convert" class="white-text">Convert</a></li>
+					<li class="link"><a href="#contact" class="white-text">Contact Us</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<section class="main-slider" style="background-color: white;" >
+      <!--   <img src={{ url_for('static', filename='images/1.png') }} /> -->
+		<div class="mySlides">
+			<div class="slide-caption center">
+				<h2 class="main-title text-align-left">Image To Audio Converter</h2>
+				<h5 class="main-content text-align-left" style="color: black;">Extract text and generate corresponding audio file.</h5>
+			</div>
+		</div>
+		<div class="mySlides">
+			<div class="slide-caption center">
+				<h2 class="main-title text-align-left">Image To Text</h2>
+				<h5 class="main-content text-align-left" style="color: black;">Extracts text from your image after performing several noise reduction techniques.</h5>
+			</div>
+		</div>
+		<div class="mySlides">
+			<div class="slide-caption center">
+				<h2 class="main-title text-align-left">Multilanguage</h2>
+				<h5 class="main-content text-align-left" style="color: black;">Can transfer data from one language to other and generate corresponding audio file</h5>
+			</div>
+		</div>
+		<div class="mySlides">
+			<div class="slide-caption center">
+				<h2 class="main-title text-align-left">Audio Generation</h2>
+				<h5 class="main-content text-align-left" style="color: black;">Translate your text from one language to another using Google Text To Speech(GTTS).
+				</h5>
+			</div>
+		</div>
+		<div class="mySlides">
+			<div class="slide-caption center">
+				<h2 class="main-title text-align-left">Downloadable Audio File</h2>
+				<h5 class="main-content text-align-left" style="color: black;">Provides downloadable audio file after generating the audio.
+ 				</h5>
+			</div>
+		</div>
+		
+	</section>
+
+	<section id="about" style="background-color: #eeeeee;">
+		<h3 class="main-title center">About PolyVox</h3>
+		<div class="center line"></div><br>
+		<div class="row">
+			<div class="col flexbox">
+				<div class="polyvox" style="display: flex;">
+				<img class="mascot-img" style="padding: 35px;" src={{ url_for('static', filename='images/picture.png') }} />
+				<img class="mascot-img" style="padding: 35px;" src={{ url_for('static', filename='images/text.png') }} />
+				<img class="mascot-img" style="padding: 35px;" src={{ url_for('static', filename='images/audio.png') }} />
+			</div>
+				<p class="mascot-content main-content text-align-center">
+					PolyVox is a cutting-edge platform dedicated to facilitating seamless communication across languages through innovative image-to-audio conversion services. Our mission is to
+					break down language barriers by transforming text-containing images into high-quality audio files, enabling users to access content effortlessly in their preferred language.
+					Powered by advanced algorithms and machine learning techniques converter empowers users to effortlessly access and engage with digital content, fostering a more inclusive digital landscape
+					, PolyVox ensures accurate and natural-sounding audio output. 
+					<br>
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section section id="convert" style="background-color: white;">
+		<h3 class="main-title center">Start Converting</h3>
+		<div class="center line"></div>
+		<div class="content row d-flex" style="margin-left: 25%;">
+			<div class="row">  
+				<div class="col s6 m4 l4 d-flex">
+				<div class="card" style="background-color: rgba(128, 128, 128, 0.271); width: 450px; padding: 2.3rem;">
+				  <h5 class="feature-title" style="text-align: center;"><b>Capture Image</b></h5>
+				  <img src="/static/images/camera.webp" alt="Avatar" style="display: block; margin: 0 auto; width: 150px; height: 150px;">
+				  <div class="center">
+					<p class="main-content">Proceed with direct image capturing</p>
+					<a class="btn sec-btn" style="margin-bottom: 10px;" href={{ url_for('camera') }}>Camera</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col s6 m4 l4 d-flex">
+				<div class="card" style="background-color: rgba(128, 128, 128, 0.271); width: 450px; padding: 2.3rem;">
+				  <h5 class="feature-title" style="text-align: center;"><b>Upload your image</b></h5>
+				  <img src="/static/images/upload.png" alt="Avatar" style="display: block; margin: 0 auto; width: 150px; height: 150px;">
+				  <div class="center">
+					<p class="main-content">Select an image file from your device to upload for conversion</p>
+					<a class="btn sec-btn" style="margin-bottom: 10px" href={{ url_for('upload') }}>Upload</a>
+				  </div>
+				</div>
+			  </div>
+		</div>
+	</section>
+
+	<section id="features" style="background-color: #eeeeee;">
+		<h3 class="main-title center">Features</h3>
+		<div class="center line"></div>
+		<div class="content row flexHeight">
+		  <div class="row">
+			<div class="col s6 m6 l6 d-flex">  <div class="card" style="background-color: rgba(128, 128, 128, 0.271); width: 450px; padding: 2.3rem;">
+				<h5 class="feature-title" style="text-align: center;"><b>Multilanguage Support</b></h5>
+				<img src="/static/images/multilanguage.png" alt="Avatar" style="display: block; margin: 0 auto; width: 150px; height: 150px;">
+				<div class="center">
+				  <p class="main-content">Our project offers comprehensive multilanguage support, enabling users to convert text from images into audio in a variety of languages effortlessly and accurately.</p>
+				</div>
+			  </div>
+			</div>
+			<div class="col s6 m6 l6 d-flex">  <div class="card" style="background-color: rgba(128, 128, 128, 0.271); width: 450px; padding: 2.3rem;">
+				<h5 class="feature-title" style="text-align: center;"><b>User-Friendly Interface</b></h5>
+				<img src="/static/images/user friendly.png" alt="Avatar" style="display: block; margin: 0 auto; width: 150px; height: 150px;">
+				<div class="center">
+				  <p class="main-content">Our user-friendly interface streamlines the image-to-audio conversion process. Easily download the audio file to your device to offline or convenient sharing with others.</p>
+				</div>
+			  </div>
+			</div>
+		  </div>
+	  
+		  <div class="row">
+			<div class="col s6 m6 l6 d-flex">  <div class="card" style="background-color: rgba(128, 128, 128, 0.271);width: 450px; padding: 2.3rem;">
+				<h5 class="feature-title" style="text-align: center;"><b>Downloadable Audio File</b></h5>
+				<img src="/static/images/downloadable audio.png" alt="Avatar" style="display: block; margin: 0 auto; width: 150px; height: 150px;">
+				<div class="center">
+				  <p class="main-content">After text-to-speech conversion, users have the option to download the generated audio file directly to their devices for offline playback or sharing with others.</p>
+				</div>
+			  </div>
+			</div>
+			<div class="col s6 m6 l6 d-flex">  <div class="card" style="background-color: rgba(128, 128, 128, 0.271);width: 450px; padding: 2.3rem;">
+				<h5 class="feature-title" style="text-align: center;"><b>Camera-to-Audio Conversion</b></h5>
+				<img src="/static/images/camera.webp" alt="Avatar" style="display: block; margin: 0 auto; width: 150px; height: 150px;">
+				<div class="center">
+				  <p class="main-content">Capture text directly with our built-in camera feature. Instantly extract and convert text to audio for convenient access, ensuring seamless communication .</p>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</section>
+
+	<section id="contact" style="background-color: white;">
+		<h3 class="main-title center">Contact Us</h3>
+		<div class="center line"></div>
+		<div class="row">
+			<form id="ajax-contact" method="post" action="/contact">
+				<div class="row field-row">
+					<div class="input-field col s12 m4">
+						<input id="name" name="name" type="text" class="validate" required>
+						<label id="nameLabel" for="name">Name</label>
+					</div>
+					<div class="input-field col s12 m4">
+						<input id="email" name="email" type="email" class="validate" required>
+						<label id="emailLabel" for="email">Email</label>
+					</div>
+					<div class="input-field col s12 m4">
+						<input id="subject" name="subject" type="text" class="validate" required>
+						<label id="subjectLabel" for="subject">Subject</label>
+					</div>
+				</div>
+				<div class="input-field col s12">
+					<textarea id="textarea1" name="message" class="materialize-textarea" required></textarea>
+					<label id="messageLabel" for="textarea1">Message</label>
+				</div>
+				<div class="form-cta center">
+					<button type="Submit" class="btn waves-effect white-text main-btn">SUBMIT</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<footer>
+		<div class="row flexboxRow">
+			<div class="col flexboxRow">
+				<p class="copyright mr-1"><b>&copy; <a>GVPCE(A)</a><b></p>				
+			</div>
+		</div>
+	</footer>
+	
+	{% include 'index_scripts.html' %}
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+</body>

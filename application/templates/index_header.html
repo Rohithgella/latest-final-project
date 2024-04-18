@@ -1,0 +1,418 @@
+<title>final</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:600" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/barium.js"></script>
+<script type="text/javascript" src="/js/message.factory.js"></script>
+<style type="text/css">
+        .main-title {
+                font-family: 'Raleway', sans-serif;
+                font-weight: 600;
+        }
+
+        .main-content {
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+        }
+
+        .main-btn {
+                background-image: linear-gradient(to right, #16A2E8 0%, #12D8FA 51%, #16A2E8 100%);
+                transition: all 1s linear;
+                background-size: 200% auto;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 600;
+        }
+
+        .main-btn:hover {
+                background-position: right center;
+        }
+
+        .sec-btn {
+                margin-top: 1rem;
+                color: #16A2E8;
+                background-color: #fff;
+                border: 1px solid #16A2E8;
+                border-radius: 5rem;
+                transition: all 0.3s linear;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 600;
+        }
+
+        .sec-btn:hover {
+                color: #fff;
+                background-color: #16A2E8;
+        }
+
+        .navbar-fixed ul li {
+                font-family: 'Raleway', sans-serif;
+                font-weight: 600;
+        }
+
+        .brand-logo img {
+                padding: 0.5rem;
+                width: 8rem;
+        }
+
+        .brand-logo {
+                display: flex!important;
+                align-items: center;
+                top: 0;
+                bottom: 0;
+        }
+
+        .side-nav {
+                z-index: 1000;
+        }
+
+        #sidenav-overlay {
+                z-index: 500;
+        }
+
+        .main-slider {
+                position: relative;
+                height: 100%;
+        }
+
+        .main-slider .mySlides img {
+                z-index: 1;
+        }
+
+        .main-slider .mySlides .img-overlay {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.6);
+                opacity: 1;
+        }
+
+        .main-slider .slide-caption {
+                color: #fff;
+                width: 50%;
+                position: absolute;
+                left: 30%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                padding: 0.5rem 1rem;
+        }
+
+        .main-slider .slide-caption .main-title {
+                color: #00e5ff;
+                text-transform: uppercase;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 600;
+        }
+
+        .main-slider .slide-caption .main-content {
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+                letter-spacing: 1px;
+        }
+
+        .main-slider .slide-btn {
+                color: #fff;
+                border: 2px solid #fff;
+                border-radius: 200%;
+                background-color: transparent;
+                padding: 1rem 1.5rem;
+                position: absolute;
+                top: 50%;
+                transition: all 1.0s linear;
+                transform: translate(0%, -50%);
+        }
+
+        .main-slider .slide-btn:hover {
+                border-color: #16A2E8;
+                background-color: #16A2E8;
+        }
+
+        .main-slider .left-slide-btn {
+                left: 2%;
+        }
+
+        .main-slider .right-slide-btn {
+                right: 2%;
+        }
+
+        .main-slider .action-btn {
+                position: absolute;
+                left: 50%;
+                bottom: 2%;
+                transform: translateX(-50%);
+                width: 100%;
+        }
+
+        section .line {
+                border: solid 1px;
+                width: 8rem;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-bottom: 2rem;
+        }
+
+        #about,
+        #features,
+        #pricing,
+        #contact
+         {
+                padding: 3rem 4rem;
+        }
+
+        #features {
+                background-color: #eeeeee;
+        }
+
+        #features .icon-holder .icon {
+                position: relative;
+                height: 5rem;
+                width: 5rem;
+                border-radius: 50%;
+                background-color: #16A2E8;
+                display: inline-block;
+        }
+
+        #features .icon-holder .icon i {
+                color: #fff;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+        }
+
+        #features .row .col {
+                padding-bottom: 3rem;
+        }
+
+        #about,
+        #contact {
+                background-color: #fff;
+        }
+
+        #about .mascot-img {
+                width: 16rem;
+        }
+
+        .yt-video {
+                width: 100%;
+        }
+
+        #features .card-content {
+                min-height: 23rem;
+        }
+
+        #features .feature-title {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+        }
+
+        #contact input,
+        #contact textarea {
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+        }
+
+        #contact .form-cta a {
+                border-radius: 1.5rem;
+        }
+
+        footer .icon-holder .icon {
+                position: relative;
+                height: 2rem;
+                width: 2rem;
+                border-radius: 50%;
+                display: inline-block;
+        }
+
+        footer .icon-holder .icon i {
+                color: #fff;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+        }
+
+        footer ul li {
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+        }
+
+
+        @media only screen and (max-width: 1030px) {
+                #about .mascot-content {
+                        padding: 2rem;
+                }
+        }
+
+        @media only screen and (max-width: 860px) {
+                #about .mascot-content {
+                        padding: 1rem;
+                }
+        }
+
+        @media only screen and (max-width: 800px) {
+                .row .col.m6 {
+                        width: 100%;
+                        margin-left: auto;
+                        left: auto;
+                        right: auto;
+                }
+        }
+
+        @media only screen and (max-width: 768px) {
+                .mobileSignIn {
+                        display: block;
+                }
+        }
+
+        @media only screen and (max-width: 400px) {
+                .main-btn {
+                        font-size: xx-small;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                }
+
+                #contact {
+                        padding-left: 5px;
+                        padding-right: 5px;
+                }
+
+                #pricing {
+                        padding-left: 5px;
+                        padding-right: 5px;
+                }
+
+                #features {
+                        padding-left: 5px;
+                        padding-right: 5px;
+                }
+        }
+
+        @media only screen and (max-width: 1137px) {
+                #pricing {
+                        padding-left: 5px;
+                        padding-right: 5px;
+                }
+
+                #features {
+                        padding-left: 5px;
+                        padding-right: 5px;
+                }
+        }
+
+        @media only screen and (max-width: 1030px) {
+                .price {
+                        font-size: xx-large;
+                }
+        }
+
+        @media only screen and (max-width: 500px) {
+                .main-slider {
+                        height: 270px;
+                }
+
+                .row .col.s6 {
+                        width: -webkit-fill-available;
+                }
+        }
+
+        .mySlides {
+                display: none;
+                opacity: 0;
+                transition: opacity 1.0s ease-in-out;
+        }
+
+        .mySlides:first-child {
+                display: block;
+        }
+
+        .main-slider {
+                background: url('/images/DRE/images/1.png');
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: contain;
+                background-color: black;
+        }
+
+        .text-align-left {
+                text-align: left !important;
+        }
+
+        .text-align-center {
+                text-align: center !important;
+        }
+
+        .flexbox {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: column;
+        }
+
+        .flexboxRow {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+        }
+
+        .mr-1 {
+                margin-right: 1rem;
+        }
+
+        .icon-holder {
+                background-repeat: no-repeat!important;
+                background-position: center!important;
+                background-size: cover!important;
+                height: 100px!important;
+        }
+        .flexHeight {
+                display: flex;
+                align-items: stretch;
+                flex-wrap: wrap;
+        }
+        .d-flex {
+                display: flex;
+        }
+        #ajax-contact {
+                display: flex;
+                align-items: center;
+                flex-flow: column;
+        }
+        .field-row {
+                margin: unset;
+                width: 100%;
+        }
+        footer {
+                background: aliceblue !important
+               
+        }
+        
+        @media only screen and (min-width: 320px) and (max-width: 600px) {
+              .main-title {
+                font-size: x-large;
+              }
+              .main-content {
+                font-size: small;
+              }
+        }
+        .card {
+    background-color: #d3d3d3;
+    transition: 0.3s;
+    /* Add box-shadow properties */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.54); /* Example values */
+}
+
+.card:hover {
+    /* Adjust box-shadow on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.593); /* Example values */
+}
+
+</style>

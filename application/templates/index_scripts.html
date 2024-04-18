@@ -1,0 +1,308 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+                $(".button-collapse").sideNav();
+                $('.modal').modal();
+                $('select').material_select();
+                $('.signup-btn').on('click', function() {
+                        var plan = $(this).attr('data-plan');
+                        $('#register_plan').val(plan);
+                        $('#register_plan').material_select();
+                })
+        })
+        /* Scroll to section on nav click */
+        $('.navbar-fixed .nav-wrapper ul li a').click(function() {
+                var href = $(this).attr('href');
+                if (href != '#login_modal') {
+                        $('html, body').animate({
+                                scrollTop: $(href).offset().top - 60
+                        }, 1000);
+                }
+        });
+        $('#mobile-demo li a').click(function() {
+                var href = $(this).attr('href');
+                if (href != '#login_modal') {
+                        $('html, body').animate({
+                                scrollTop: $(href).offset().top - 60
+                        }, 1000);
+                        $("#sidenav-overlay").trigger("click");
+                }
+        });
+        $(".forgot-pass-btn").click(function() {
+                $('#login_modal').modal('close');
+        });
+</script>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+                const slides = document.querySelectorAll(".mySlides");
+                let currentIndex = 0;
+
+                function showSlide(index) {
+                        slides.forEach((slide, i) => {
+                                if (i === index) {
+                                        slide.style.display = "block";
+                                        setTimeout(() => {
+                                                slide.style.opacity = 1;
+                                        }, 10);
+                                } else {
+                                        slide.style.display = "none";
+                                        slide.style.opacity = 0;
+                                }
+                        });
+                }
+
+                function nextSlide() {
+                        currentIndex = (currentIndex + 1) % slides.length;
+                        showSlide(currentIndex);
+                }
+
+                // Initial display
+                showSlide(currentIndex);
+
+                // Start the loop
+                setInterval(nextSlide, 2000); // Change slide every 2 seconds
+        });
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript">
+        $(function() {
+                var form = $('#ajax-contact');
+                var formMessages = $('#form-messages');
+                $(form).submit(function(event) {
+
+                        event.preventDefault();
+                        var formData = $(form).serialize();
+
+                        $.ajax({
+                                type: 'POST',
+                                url: $(form).attr('action'),
+                                data: formData,
+                                success: function(response) {
+                                        $('#name').val('').removeClass("valid");
+                                        $('#email').val('').removeClass("valid");
+                                        $('#subject').val('').removeClass("valid");
+                                        $('#textarea1').val('').removeClass("valid");
+                                        $('#nameLabel').removeClass("active");
+                                        $('#emailLabel').removeClass("active");
+                                        $('#subjectLabel').removeClass("active");
+                                        $('#messageLabel').removeClass("active");
+                                        $('#form-messages').css("display", "none");
+                                        if (response == 1) {
+                                                swal({
+                                                        title: 'Success!',
+                                                        text: 'Your response has been recorded. We shall get back to you as soon as possible',
+                                                        type: 'success',
+                                                        icon: "success",
+                                                        timer: 2500,
+                                                        showCancelButton: false,
+                                                        showConfirmButton: false
+                                                }).catch(swal.noop);
+                                                $('#form-messages').val('');
+                                        } else if (response == 2) {
+                                                swal('Error!', 'Please check the the captcha form.', 'error');
+                                        } else if (response == 3) {
+                                                swal('Error!', 'You were reported as spammer! Please contact admin!', 'error');
+                                        } else {
+                                                swal('Error!', 'There was an error. Please try again later', 'error');
+                                        }
+                                },
+                        });
+                });
+        });
+</script>
+
+<script type="text/javascript">
+        $('#message').html('');
+        $('#register_confirm_password').on('keyup', function() {
+                if ($(this).val() == $('#register_password').val()) {
+                        $('#message').html('Password Matched!').css('color', 'green');
+                        $('#submit1').prop('disabled', false);
+                } else $('#message').html('Password and Confirm Password not Matched!').css('color', 'red');
+        });
+</script>
+
+
+<script>
+        app.controller('MainController', function(dataservice, messageservice, $scope) {
+                var vm = this;
+
+                vm.login_email;
+                vm.login_password;
+                vm.error;
+                vm.error1 = '';
+                vm.forgotPassword = forgotPassword;
+                vm.error_message;
+                vm.submit_disabled = 0;
+                vm.allow = '<?= $allow ?>';
+
+                vm.activate = activate;
+                vm.loginSubmit = loginSubmit;
+                vm.signUp = signUp;
+                vm.register_first_name = '';
+                vm.register_last_name = '';
+                vm.register_mobile = '';
+                vm.register_email = '';
+                vm.register_password = '';
+                vm.register_confirm_password = '';
+
+                activate();
+
+                function activate() {
+
+                }
+
+                function forgotPassword() {
+                        vm.eMail = $('#input_email').val();
+
+                        if (vm.eMail == '') {
+                                vm.error1 = 'Email cannot be blank!';
+                                return;
+                        }
+                        return dataservice.forgotPassword(vm).then(function(data) {
+                                if (data.error) {
+                                        vm.error1 = data.msg.system;
+
+                                } else {
+                                        vm.error1 = 'A password reset link has been sent to you on the registered Email Id';
+                                }
+                        });
+                }
+
+                function loginSubmit() {
+                        vm.error = 0;
+                        vm.submit_disabled = 1;
+                        return dataservice.loginSubmit(vm).then(function(data) {
+                                vm.submit_disabled = 0; // Enable it
+                                if (data.error) {
+                                        vm.error = 1;
+                                        vm.error_message = data.error_message;
+                                        $('#activate-info').css("display", "block");
+                                        return;
+                                }
+
+                                vm.error = 0;
+                                location.reload(true);
+                        });
+                }
+
+                function signUp() {
+                        vm.error = 0;
+                        vm.submit_disabled = 1;
+                        return dataservice.signUp(vm).then(function(data) {
+                                vm.submit_disabled = 0; // Enable it
+                                if (data.error) {
+                                        vm.error = 1;
+                                        vm.error_message = data.error_message;
+                                        $('#activate-info').css("display", "block");
+                                        return;
+                                }
+
+                                vm.error = 0;
+                                location.reload(true);
+                        });
+                }
+        });
+
+        app.factory('dataservice', function($http) {
+                return {
+                        loginSubmit: loginSubmit,
+                        signUp: signUp,
+                        forgotPassword: forgotPassword
+                }
+
+                function forgotPassword(vm) {
+                        var vo = {
+                                'eMail': vm.eMail
+                        };
+                        return $http.post('/clientuser/jxForgotPassword', vo).
+                        then(function(response) {
+                                return response.data;
+                        });
+                }
+
+
+                function loginSubmit(vm) {
+                        var vo = {
+                                'email': vm.login_email,
+                                'password': vm.login_password
+                        };
+                        return $http.post('/login', vo).
+                        then(function(response) {
+                                return response.data;
+                        });
+                }
+
+                function signUp(vm) {
+                        var form = document.getElementById('register_form');
+                        var formData = new FormData(form);
+                        var captchaResponse = null;
+                        for (let pair of formData.entries()) {
+                                console.log(pair[0] + ': ' + pair[1]);
+                                if (pair[0] == 'g-recaptcha-response') {
+                                        captchaResponse = pair[1];
+                                }
+                        }
+                        var vo = {
+                                'register_first_name': vm.register_first_name,
+                                'register_last_name': vm.register_last_name,
+                                'register_mobile': vm.register_mobile,
+                                'register_email': vm.register_email,
+                                'register_password': vm.register_password,
+                                'register_confirm_password': vm.register_confirm_password,
+                                'g-recaptcha-response': captchaResponse
+                        };
+                        return $http.post('/clientregistration/register/createUser', vo)
+                                .then(function(response) {
+                                        return response.data;
+                                });
+                }
+
+        });
+</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+                $('#login_modal').modal({
+                        complete: function() {
+                                $('#login_email').val('').removeClass("valid invalid");
+                                $('#label_email').removeClass("active");
+                                $('#login_password').val('').removeClass("valid invalid");
+                                $('#label_password').removeClass("active");
+                        }
+                });
+                $('#register_modal').modal({
+                        complete: function() {
+                                $('#register_email').val('').removeClass("valid invalid");
+                                $('#register_password').val('').removeClass("valid invalid");
+                                $('#register_confirm_password').val('').removeClass("valid invalid");
+                                $('#message').html('');
+                                $('#register_email_label').removeClass("active");
+                                $('#register_password_label').removeClass("active");
+                                $('#register_confirm_password_label').removeClass("active");
+                        }
+                });
+                $('#enterprise_btn').on("click", function() {
+                        swal({
+                                title: 'Message!',
+                                text: 'Please send your request through contact form',
+                                icon: "info",
+                                timer: 2500,
+                                button: false
+                        });
+                        setTimeout(function() {
+                                var href = '#contact';
+                                $('html, body').animate({
+                                        scrollTop: $(href).offset().top - 60
+                                }, 1000);
+                        }, 2500);
+                });
+        });
+
+        $(document).ready(function() {
+                let searchParams = new URLSearchParams(window.location.search)
+                let login = searchParams.get('login')
+                if (login) {
+                        $('#login_modal').modal('open');
+                }
+        });
+</script>

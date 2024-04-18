@@ -1,0 +1,125 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="mt-4">
+    <div class="card card-style mb-2">
+        <div class="card-body justify-content-center">
+            <p>Language is: {{ lang }}</p>
+            <form action="" method="POST">
+                {{ form.csrf_token() }}
+                <fieldset class="form-group">
+                    <legend class="mb-4"></legend>
+                    <div class="form-group">
+                        {{ form.data_field.label(class="form-control-label") }}
+                        {% if form.data_field.errors %}
+                            {{ form.data_field(class="form-control form-control-sm is-invalid") }}
+                        {% for error in form.data_field.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{error}}</span>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                            {{ form.data_field(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Language To Translate To</label>
+                        </div>
+                        <select class="custom-select" id="language" name="language">
+                            <option value="en" selected>Choose the language(Default English is selected)</option>
+                            <option value="af">afrikaans</option>
+                            <option value="sq">albanian</option>
+                            <option value="ar">arabic</option>
+                            <option value="bn">bengali</option>
+                            <option value="bs">bosnian</option>
+                            <option value="bg">bulgarian</option>
+                            <option value="ca">catalan</option>
+                            <option value="zh-cn">chinese (simplified)</option>
+                            <option value="zh-tw">chinese (traditional)</option>
+                            <option value="hr">croatian</option>
+                            <option value="cs">czech</option>
+                            <option value="da">danish</option>
+                            <option value="nl">dutch</option>
+                            <option value="en">english</option>
+                            <option value="et">estonian</option>
+                            <option value="tl">filipino</option>
+                            <option value="fi">finnish</option>
+                            <option value="fr">french</option>
+                            <option value="de">german</option>
+                            <option value="el">greek</option>
+                            <option value="gu">gujarati</option>
+                            <option value="iw">hebrew</option>
+                            <option value="he">hebrew</option>
+                            <option value="hi">hindi</option>
+                            <option value="hu">hungarian</option>
+                            <option value="is">icelandic</option>
+                            <option value="id">indonesian</option>
+                            <option value="it">italian</option>
+                            <option value="ja">japanese</option>
+                            <option value="jw">javanese</option>
+                            <option value="kn">kannada</option>
+                            <option value="km">khmer</option>
+                            <option value="ko">korean</option>
+                            <option value="la">latin</option>
+                            <option value="lv">latvian</option>
+                            <option value="ms">malay</option>
+                            <option value="ml">malayalam</option>
+                            <option value="mr">marathi</option>
+                            <option value="my">myanmar (burmese)</option>
+                            <option value="ne">nepali</option>
+                            <option value="no">norwegian</option>
+                            <option value="pl">polish</option>
+                            <option value="pt">portuguese</option>
+                            <option value="ro">romanian</option>
+                            <option value="ru">russian</option>
+                            <option value="sr">serbian</option>
+                            <option value="si">sinhala</option>
+                            <option value="sk">slovak</option>
+                            <option value="es">spanish</option>
+                            <option value="su">sundanese</option>
+                            <option value="sw">swahili</option>
+                            <option value="sv">swedish</option>
+                            <option value="ta">tamil</option>
+                            <option value="te">telugu</option>
+                            <option value="th">thai</option>
+                            <option value="tr">turkish</option>
+                            <option value="uk">ukrainian</option>
+                            <option value="ur">urdu</option>
+                            <option value="vi">vietnamese</option>
+                         
+                          </select>
+                    </div>
+
+                    <div class="form-group border-bottom pb-3 mt-4">
+                        {{ form.submit(class="btn btn-outline-info" )}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if audio %}
+    <div class="d-flex justify-content-center mt-4">
+        <audio controls autoplay class="m-auto">
+            <source src="horse.ogg" type="audio/ogg">
+            <source src="{{ url_for('static', filename='audio_files/' + file) }}" type="audio/mpeg">
+            Your browser does not support the audio.
+        </audio>
+    </div>
+{% endif %}
+
+<script>
+    document.getElementById("submit").addEventListener("click", function () {
+        swal({
+            title: "File upload in process",
+            text: "Please wait... this can take sometime",
+            icon: "success",
+            button: "Okay",
+        });
+    });
+</script>
+
+{% endblock %}
+

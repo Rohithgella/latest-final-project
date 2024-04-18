@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+
+        {% include 'index_header.html' %}
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}OCR-{{ title }}{% else %}OCR{% endif %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    <!-- Dropzone CSS -->
+    {{ dropzone.load_css() }}
+    {{ dropzone.style('border: 2px dashed #0087F7; margin: 2% 10% 2% 10%; min-height: 400px;') }}
+
+    <!-- Custom CSS -->
+    <style>
+        .shadow-box {
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .75); /* Adjust the values as needed */
+            border-radius: 10px; /* Adjust the border radius as needed */
+            padding: 20px; /* Optional: Adjust padding if needed */
+        }        
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper white-text" style="background-color: black">
+                    <a href="/" class="white-text" style="margin-left: 25px;">Image To Audio Converter</a>
+                    <a href="/" data-activates="mobile-demo" class="button-collapse black-text"><i
+                            class="material-icons">menu</i></a>
+                    <!-- Navbar menu -->
+                    <ul class="right hide-on-med-and-down">
+                        <li class="link"><a href="/#about" class="white-text">About</a></li>
+                        <li class="link"><a href="/#convert" class="white-text">Convert</a></li>
+                        <li class="link"><a href="/#features" class="white-text">Features</a></li>
+                        <li class="link"><a href="/#contact" class="white-text">Contact Us</a></li>
+                    </ul>
+    
+                    <!-- Navbar menu mobile -->
+                    <ul class="side-nav black" id="mobile-demo">
+                        <li class="link"><a href="#about" class="white-text">About</a></li>
+                        <li class="link"><a href="#features" class="white-text">Features</a></li>
+                        <li class="link"><a href="#convert" class="white-text">Convert</a></li>
+                        <li class="link"><a href="#contact" class="white-text">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+    <!-- Main Content -->
+    <div class="container mt-4 shadow-box">
+        <div class="row">
+            <div class="col-md-12">
+                
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- SweetAlerts JS -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+</html>
